@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Eco Fiction Stories</title>
+
+    <!-- <link rel="stylesheet" href="ecofiction-style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ecofiction-style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="hero">
+
+    <h1>🌱 Eco Fiction Stories</h1>
+
+    <p>
+        Explore imaginative stories about nature, environment, and the future of our planet.
+    </p>
+
+</div>
+
+
+
+<div id="stories-container" style="
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    padding:20px;
+">
+
+    <!-- Stories will load here -->
+
+</div>
+
+
+
+<br>
+
+
+<!-- BACK TO HOME -->
+
+<div style="text-align:center; padding:20px;">
+
+    <a class="home-btn" href="/home">
+        ⬅ Back to Home
+    </a>
+
+</div>
+
+
+
+
+<script>
+
+
+fetch("/stories/ecofiction")
+
+.then(res => res.json())
+
+.then(stories => {
+
+
+    const container =
+    document.getElementById("stories-container");
+
+
+    container.innerHTML="";
+
+
+    stories.forEach(story => {
+
+
+
+        const card =
+        document.createElement("div");
+
+
+        card.className="card";
+
+
+
+        card.innerHTML = `
+
+
+            <h2>${story.title}</h2>
+
+
+            <img
+
+            src="/static/Images/${story.image}"
+
+            width="300"
+
+            height="180"
+
+            style="object-fit:cover;">
+
+
+            <br><br>
+
+
+
+            <button onclick="readStory('${story.title}')">
+
+                📖 Read Story
+
+            </button>
+
+
+
+        `;
+
+
+
+        container.appendChild(card);
+
+
+
+    });
+
+
+})
+
+.catch(error=>{
+
+    console.log("Error loading stories:",error);
+
+});
+
+
+
+
+
+function readStory(title){
+
+
+    window.location.href =
+"/story?title=" +
+encodeURIComponent(title) +
+"&theme=ecofiction";
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

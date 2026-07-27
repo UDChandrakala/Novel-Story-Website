@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Story Website</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home-style.css') }}">
+
+    <script>
+
+        // Check whether the user is logged in
+        if (localStorage.getItem("loggedIn") !== "true") {
+
+            window.location.replace("/");
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <h1>Welcome to Story Website</h1>
+
+        <button class="logout-btn" onclick="logout()">
+            Logout
+        </button>
+
+    </header>
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-icon">🦋</div>
+
+            <h2>Discover Worlds Beyond Imagination</h2>
+
+            <p>
+                Choose your favourite category and begin your magical journey
+                through unforgettable stories.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- CATEGORY SECTION -->
+
+    <section class="categories">
+
+        <a href="/horror" class="butterfly-card">
+            <img src="{{ url_for('static', filename='Images/butterfly.png') }}" alt="Horror">
+            <span>Horror</span>
+        </a>
+
+        <a href="/fantasy" class="butterfly-card">
+            <img src="{{ url_for('static', filename='Images/butterfly.png') }}" alt="Fantasy">
+            <span>Fantasy</span>
+        </a>
+
+        <a href="/educational" class="butterfly-card">
+            <img src="{{ url_for('static', filename='Images/butterfly.png') }}" alt="Educational">
+            <span>Educational</span>
+        </a>
+
+        <a href="/ecofiction" class="butterfly-card">
+            <img src="{{ url_for('static', filename='Images/butterfly.png') }}" alt="Eco Fiction">
+            <span>Eco Fiction</span>
+        </a>
+
+        <a href="/history" class="butterfly-card">
+            <img src="{{ url_for('static', filename='Images/butterfly.png') }}" alt="History">
+            <span>History</span>
+        </a>
+
+        <a href="/adventure" class="butterfly-card">
+            <img src="{{ url_for('static', filename='Images/butterfly.png') }}" alt="Adventure">
+            <span>Adventure</span>
+        </a>
+
+        <a href="/mystery" class="butterfly-card">
+            <img src="{{ url_for('static', filename='Images/butterfly.png') }}" alt="Mystery">
+            <span>Mystery</span>
+        </a>
+
+        <a href="/comedy" class="butterfly-card">
+            <img src="{{ url_for('static', filename='Images/butterfly.png') }}" alt="Comedy">
+            <span>Comedy</span>
+        </a>
+
+    </section>
+
+    <script>
+
+        function logout() {
+
+            localStorage.removeItem("loggedIn");
+
+            window.location.replace("/");
+
+        }
+
+    </script>
+
+</body>
+
+</html>

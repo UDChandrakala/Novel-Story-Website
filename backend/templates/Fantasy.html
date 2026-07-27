@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fantasy Stories</title>
+    <!-- <link rel="stylesheet" href="fantasy-style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fantasy-style.css') }}">
+</head>
+
+
+
+<body>
+
+<div class="hero">
+    <h1>🧙 Fantasy Stories</h1>
+<p>Step into a magical world filled with adventure and wonder.</p>
+</div>
+
+<div id="stories-container" style="
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+">
+    <!-- Cards will be loaded here dynamically -->
+</div>
+
+<br>
+
+<!-- BACK TO HOME -->
+<div style="text-align:center; padding: 20px;">
+    <a class="home-btn" href="/home">⬅ Back to Home</a>
+</div>
+
+<!-- JavaScript to fetch stories -->
+<script>
+
+fetch("/stories/fantasy")
+  .then(res => res.json())
+  .then(stories => {
+    const container = document.getElementById("stories-container");
+    container.innerHTML = ""; // clear any static content
+    stories.forEach(story => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h2>${story.title}</h2>
+        <img src="http://127.0.0.1:5000/static/Images/${story.image}" 
+width="300" 
+height="180" 
+style="object-fit:cover;">
+        <br><br>
+        <button onclick="readStory('${story.title}')">Read Story</button>
+      `;
+      container.appendChild(card);
+    });
+  });
+
+function readStory(title){
+
+    window.location.href =
+    "/story?title=" +
+    encodeURIComponent(title) +
+    "&theme=fantasy";
+
+}
+</script>
+
+</body>
+</html>

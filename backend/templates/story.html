@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Story</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/story-style.css') }}">
+</head>
+
+
+<body>
+
+
+<div id="story-container"></div>
+
+
+
+<script>
+
+
+const params = new URLSearchParams(window.location.search);
+
+const title = params.get("title");
+const theme = params.get("theme") || "horror" || "eco fiction";
+
+let pages = [];
+
+let currentPage = 0;
+
+let storyData;
+
+
+fetch("/story/" + encodeURIComponent(title))
+
+.then(response => {
+
+    if (!response.ok) {
+
+        throw new Error("Story not found");
+
+    }
+
+    return response.json();
+
+})
+
+.then(story => {
+
+    console.log("Story received:", story);
+
+    storyData = story;
+
+    if (!story.content) {
+
+        throw new Error("Story content is missing.");
+
+    }
+
+    let words = story.content.split(" ");
+
+    let wordsPerPage = 150;
+
+    pages = [];
+
+    for (let i = 0; i < words.length; i += wordsPerPage) {
+
+        pages.push(
+            words.slice(i, i + wordsPerPage).join(" ")
+        );
+
+    }
+
+    currentPage = 0;
+
+    showPage();
+
+})
+
+.catch(error => {
+
+    console.error(error);
+
+    document.getElementById("story-container").innerHTML = `
+        <h2 style="color:red;text-align:center;margin-top:100px;">
+            ${error.message}
+        </h2>
+    `;
+
+});
+
+
+
+
+
+function showPage(){
+
+
+
+const container = document.getElementById("story-container");
+
+
+
+container.innerHTML = `
+
+
+<div class="book">
+
+
+<h1>
+📖 ${storyData.title}
+</h1>
+
+
+
+<h3>
+By ${storyData.author}
+</h3>
+
+
+
+
+<h2>
+Chapter ${currentPage + 1}
+</h2>
+<div class="progress-container">
+    <div class="progress-bar"
+         style="width:${((currentPage + 1) / pages.length) * 100}%;">
+    </div>
+</div>
+
+<p class="progress-text">
+    Reading Progress:
+    ${Math.round(((currentPage + 1) / pages.length) * 100)}%
+</p>
+
+
+
+<div class="story-content">
+
+${pages[currentPage]}
+
+</div>
+
+
+
+
+
+<div class="page-number">
+
+Page ${currentPage + 1} of ${pages.length}
+
+</div>
+
+
+
+
+
+<div class="buttons">
+
+
+<button onclick="previousPage()">
+
+⬅ Previous
+
+</button>
+
+
+
+
+<button onclick="nextPage()">
+
+Next ➡
+
+</button>
+
+
+
+</div>
+
+
+
+<a href="/${theme}" class="back-btn">
+
+⬅ Back to ${theme.charAt(0).toUpperCase() + theme.slice(1)} Stories
+
+
+</a>
+
+
+</div>
+
+
+`;
+
+}
+
+
+
+
+
+function nextPage(){
+
+
+
+if(currentPage < pages.length - 1){
+
+
+    currentPage++;
+
+    showPage();
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+function previousPage(){
+
+
+
+if(currentPage > 0){
+
+
+    currentPage--;
+
+    showPage();
+
+
+}
+
+
+
+}
+
+
+
+</script>
+
+
+</body>
+
+</html>

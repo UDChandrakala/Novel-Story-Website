@@ -1,0 +1,594 @@
+/* ==========================================
+   STORY LIBRARY REGISTER PAGE
+========================================== */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+
+/* ==========================================
+   GLOBAL RESET
+========================================== */
+
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+    font-family:'Poppins',sans-serif;
+
+}
+
+
+
+/* ==========================================
+   BODY
+========================================== */
+
+
+body{
+
+
+    min-height:100vh;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    padding:20px;
+
+
+    overflow-x:hidden;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        rgba(0,0,0,.35),
+
+        rgba(0,0,0,.35)
+
+    ),
+
+
+    url("../Images/register.jpg");
+
+
+
+    background-size:cover;
+
+
+    background-position:center;
+
+
+    background-repeat:no-repeat;
+
+
+}
+
+
+
+/* ==========================================
+   REGISTER WRAPPER
+========================================== */
+
+
+.register-wrapper{
+
+
+    width:100%;
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+}
+
+
+
+
+
+/* ==========================================
+   PAGE TITLE
+========================================== */
+
+
+.page-title{
+
+
+    width:100%;
+
+
+    text-align:center;
+
+
+    font-size:45px;
+
+
+    font-weight:700;
+
+
+    color:white;
+
+
+    margin-bottom:25px;
+
+
+
+    text-shadow:
+
+
+    3px 3px 10px black;
+
+
+}
+
+
+
+
+
+/* ==========================================
+   REGISTER CARD
+========================================== */
+
+
+.form-container{
+
+
+    width:90%;
+
+
+    max-width:450px;
+
+
+    padding:35px;
+
+
+
+    background:
+
+
+    rgba(255,255,255,0.18);
+
+
+
+    backdrop-filter:blur(15px);
+
+
+
+    -webkit-backdrop-filter:blur(15px);
+
+
+
+    border-radius:25px;
+
+
+
+    border:
+
+
+    1px solid rgba(255,255,255,0.35);
+
+
+
+    box-shadow:
+
+
+    0 20px 50px rgba(0,0,0,.45);
+
+
+
+    text-align:center;
+
+
+
+    animation:fadeIn .8s ease;
+
+
+}
+
+
+
+
+
+/* ==========================================
+   HEADING
+========================================== */
+
+
+.form-container h2{
+
+
+    font-size:34px;
+
+
+    color:white;
+
+
+    font-weight:700;
+
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+
+
+/* ==========================================
+   DESCRIPTION
+========================================== */
+
+
+.form-container p{
+
+
+    color:white;
+
+
+    font-size:16px;
+
+
+    margin-bottom:25px;
+
+
+}
+
+
+
+
+
+/* ==========================================
+   LABELS
+========================================== */
+
+
+label{
+
+
+    display:block;
+
+
+    text-align:left;
+
+
+    color:white;
+
+
+    font-size:15px;
+
+
+    font-weight:600;
+
+
+    margin-top:12px;
+
+
+}
+
+
+
+
+
+/* ==========================================
+   INPUTS
+========================================== */
+
+
+.form-container input,
+.form-container select{
+
+
+    width:100%;
+
+
+    padding:14px;
+
+
+    margin:10px 0;
+
+
+    border:none;
+
+
+    outline:none;
+
+
+    border-radius:12px;
+
+
+    font-size:16px;
+
+
+    background:white;
+
+
+}
+
+
+
+.form-container input:focus,
+.form-container select:focus{
+
+
+    box-shadow:
+
+
+    0 0 12px #ff7b6b;
+
+
+}
+
+
+
+
+
+/* ==========================================
+   REGISTER BUTTON
+========================================== */
+
+
+.form-container button{
+
+
+    width:100%;
+
+
+    padding:14px;
+
+
+    margin-top:20px;
+
+
+    border:none;
+
+
+    border-radius:30px;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        90deg,
+
+        #ff7b6b,
+
+        #ff9a76
+
+    );
+
+
+
+    color:white;
+
+
+    font-size:18px;
+
+
+    font-weight:bold;
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+
+
+.form-container button:hover{
+
+
+    transform:translateY(-3px);
+
+
+
+    box-shadow:
+
+
+    0 10px 25px rgba(255,123,107,.45);
+
+
+}
+
+
+
+
+
+/* ==========================================
+   LOGIN LINK
+========================================== */
+
+
+.login-link{
+
+
+    margin-top:20px;
+
+
+    font-size:16px;
+
+
+    color:white;
+
+
+}
+
+
+
+.login-link a{
+
+
+    color:#FFD700;
+
+
+    font-weight:bold;
+
+
+    text-decoration:none;
+
+
+}
+
+
+
+.login-link a:hover{
+
+
+    text-decoration:underline;
+
+
+}
+
+
+
+
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+
+@keyframes fadeIn{
+
+
+from{
+
+
+    opacity:0;
+
+
+    transform:translateY(30px);
+
+
+}
+
+
+
+to{
+
+
+    opacity:1;
+
+
+    transform:translateY(0);
+
+
+}
+
+
+}
+
+
+
+
+
+/* ==========================================
+   MOBILE RESPONSIVE
+========================================== */
+
+
+@media(max-width:768px){
+
+
+
+.page-title{
+
+
+    font-size:32px;
+
+
+}
+
+
+
+.form-container{
+
+
+    width:95%;
+
+
+    padding:25px;
+
+
+}
+
+
+
+.form-container h2{
+
+
+    font-size:28px;
+
+
+}
+
+
+
+.form-container p{
+
+
+    font-size:14px;
+
+
+}
+
+
+
+.form-container input,
+.form-container select{
+
+
+    font-size:15px;
+
+
+    padding:12px;
+
+
+}
+
+
+
+.form-container button{
+
+
+    font-size:16px;
+
+
+}
+
+
+
+}

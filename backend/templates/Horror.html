@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Horror Stories</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/horror-style.css') }}">
+
+</head>
+
+<body>
+
+<div class="hero">
+
+    <h1>👻 Horror Stories</h1>
+
+    <p>
+        Enter if you dare... Scary stories await you.
+    </p>
+
+</div>
+
+<div id="stories-container" style="
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    padding:20px;
+">
+
+    <!-- Horror story cards will be loaded here dynamically -->
+
+</div>
+
+<br>
+
+<!-- BACK TO HOME -->
+
+<div style="text-align:center; padding:20px;">
+
+    <a class="home-btn" href="/home">
+        ⬅ Back to Home
+    </a>
+
+</div>
+
+<!-- JavaScript to fetch horror stories -->
+
+<script>
+
+fetch("http://127.0.0.1:5000/stories/horror")
+
+.then(res => res.json())
+
+.then(stories => {
+
+    const container = document.getElementById("stories-container");
+
+    container.innerHTML = "";
+
+    stories.forEach(story => {
+
+        const card = document.createElement("div");
+
+        card.className = "card";
+
+        card.innerHTML = `
+
+            <h2>${story.title}</h2>
+
+            <img
+            src="http://127.0.0.1:5000/static/Images/${story.image}"
+
+            width="300"
+
+            height="180"
+
+            style="object-fit:cover;">
+
+            <br><br>
+
+            <button onclick="readStory('${story.title}')">
+                Read Story
+            </button>
+
+        `;
+
+        container.appendChild(card);
+
+    });
+
+})
+
+.catch(error => {
+
+    console.log(
+        "Error loading horror stories:",
+        error
+    );
+
+});
+
+function readStory(title) {
+
+    window.location.href =
+    "/story?title=" +
+    encodeURIComponent(title) +
+    "&theme=horror";
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Mystery Stories</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mystery-style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="hero">
+
+    <h1>🕵️ Mystery Stories</h1>
+
+    <p>
+        Enter a world of secrets, investigations, and thrilling mysteries.
+    </p>
+
+</div>
+
+
+
+<div id="stories-container" style="
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    padding:20px;
+">
+
+    <!-- Mystery story cards will load here -->
+
+</div>
+
+
+
+<br>
+
+
+
+<!-- BACK TO HOME -->
+
+<div style="text-align:center; padding:20px;">
+
+    <a class="home-btn" href="/home">
+        ⬅ Back to Home
+    </a>
+
+</div>
+
+
+
+
+<script>
+
+
+fetch("/stories/mystery")
+
+
+.then(res => res.json())
+
+
+.then(stories => {
+
+
+    const container =
+    document.getElementById("stories-container");
+
+
+    container.innerHTML="";
+
+
+
+    stories.forEach(story => {
+
+
+        const card =
+        document.createElement("div");
+
+        card.className="card";
+
+
+
+        card.innerHTML = `
+
+
+        <h2>${story.title}</h2>
+
+
+        <img 
+        src="/static/Images/${story.image}"
+        width="300"
+        height="180"
+        style="object-fit:cover;"
+        >
+
+
+        <br><br>
+
+
+        <button onclick="readStory('${story.title}')">
+            Read Story
+        </button>
+
+
+        `;
+
+
+        container.appendChild(card);
+
+
+
+    });
+
+
+
+})
+
+
+
+.catch(error=>{
+
+    console.log("Error loading mystery stories:",error);
+
+});
+
+
+
+
+
+
+function readStory(title){
+
+
+   window.location.href =
+"/story?title="
++ encodeURIComponent(title)
++ "&theme=mystery";
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

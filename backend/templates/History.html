@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>History Stories</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/history-style.css') }}">
+</head>
+
+<body>
+
+<div class="hero">
+    <h1>🏛️ History Stories</h1>
+    <p>Travel back in time and explore inspiring historical events and legends.</p>
+</div>
+
+<div id="stories-container" style="
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+">
+    <!-- Cards will be loaded here dynamically -->
+</div>
+
+<br>
+
+<!-- BACK TO HOME -->
+<div style="text-align:center; padding:20px;">
+    <a class="home-btn" href="/home">⬅ Back to Home</a>
+</div>
+
+<script>
+
+fetch("/stories/history")
+.then(res => res.json())
+.then(stories => {
+
+    const container = document.getElementById("stories-container");
+    container.innerHTML = "";
+
+    stories.forEach(story => {
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+            <h2>${story.title}</h2>
+
+            <img
+                src="/static/Images/${story.image}"
+                width="300"
+                height="180"
+                style="object-fit:cover;">
+
+            <br><br>
+
+            <button onclick="readStory('${story.title}')">
+                📖 Read Story
+            </button>
+        `;
+
+        container.appendChild(card);
+
+    });
+
+});
+
+function readStory(title){
+
+   window.location.href =
+"/story?title=" +
+encodeURIComponent(title) +
+"&theme=history";
+
+}
+
+</script>
+
+</body>
+</html>
