@@ -227,50 +227,51 @@ body{
 
 body{
 
-    padding:15px;
+    padding:10px;
 
 }
 
 #story-container{
 
     width:100%;
+    margin:0;
 
 }
 
 .book{
 
-    padding:25px;
+    padding:20px;
 
 }
 
 .book h1{
 
-    font-size:26px;
+    font-size:22px;
 
 }
 
 .book h2{
 
-    font-size:26px;
+    font-size:22px;
 
 }
 
 .book h3{
 
-    font-size:18px;
+    font-size:16px;
 
 }
 
 .story-content{
     background:#fffdf7;
-    border-radius:18px;
-    padding:45px;
-    font-size:18px;
-    line-height:1.8;
+    border-radius:15px;
+    padding:20px;
+    font-size:16px;
+    line-height:1.7;
     color:#222;
     text-align:justify;
     box-shadow:inset 0 0 20px rgba(0,0,0,.08);
-    min-height:420px;
+    min-height:auto;
 }
 
 .story-content::first-letter{
@@ -287,7 +288,7 @@ body{
 
 .progress-text{
 
-    font-size:18px;
+    font-size:15px;
 
 }
 
@@ -301,12 +302,16 @@ body{
 .buttons button{
 
     width:100%;
+    font-size:16px;
+    padding:12px;
 
 }
 
 .back-btn{
 
     width:100%;
+    font-size:16px;
+    padding:12px;
 
 }
 
