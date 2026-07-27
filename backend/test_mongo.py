@@ -1,4 +1,11 @@
 import pymongo
+import os
+from dotenv import load_dotenv
 
-client = pymongo.MongoClient("mongodb+srv://ugranamchandrakala23_db_user:novels123@kasv-cluster.iqwvnkh.mongodb.net/novels_db?retryWrites=true&w=majority&tls=true")
+load_dotenv()
+
+client = pymongo.MongoClient(
+    os.environ.get("MONGO_URI")
+)
+
 print(client.list_database_names())
