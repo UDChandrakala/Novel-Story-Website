@@ -45,7 +45,7 @@ fetch("/stories/fantasy")
       card.className = "card";
       card.innerHTML = `
         <h2>${story.title}</h2>
-        <img src="http://127.0.0.1:5000/static/Images/${story.image}" 
+        <img src="${window.location.origin}/static/Images/${story.image}" 
 width="300" 
 height="180" 
 style="object-fit:cover;">
